@@ -1,0 +1,33 @@
+class Solution {
+    public int shortestDistance(String[] words, String word1, String word2) {
+        
+        Map<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();
+        for(int i = 0 ; i < words.length; i++){
+            if(!map.containsKey(words[i])){
+                 ArrayList<Integer> arr = new  ArrayList<Integer>();
+                arr.add(i);
+                map.put(words[i],arr);
+            }else{
+                map.get(words[i]).add(i);
+            }
+        }
+        
+         ArrayList<Integer> arr1 = map.get(word1);
+         ArrayList<Integer> arr2 = map.get(word2);
+         ArrayList<Integer> arrOfRes = new  ArrayList<Integer>();
+        
+        for(int i = 0; i < arr1.size(); i++){
+            for(int j = 0; j < arr2.size(); j++){
+                arrOfRes.add(Math.abs(arr1.get(i)-arr2.get(j)));
+            }
+        }
+        int result = Integer.MAX_VALUE;
+        for(int num: arrOfRes){
+            if(result > num){
+                result = num;
+            }
+        }
+        
+        return result;
+    }
+}

@@ -1,0 +1,24 @@
+class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int row = nums.length;
+        int cl = nums[0].length;
+        
+        if (r * c != row * cl)  return  nums;
+        int[] arr = new int[ r * c];
+        int pos = 0;
+        for(int[] rowArr : nums){
+            for(int num : rowArr){
+                arr[pos++] = num;
+            }
+        }
+        int loc = 0;
+        int[][] newNums = new int[r][c];
+        for(int i = 0; i < r ; i++){
+            for(int j = 0; j < c;j++ ){
+                newNums[i][j] = arr[loc++];
+            }
+        }
+        
+        return newNums;
+    }
+}
