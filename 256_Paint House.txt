@@ -1,0 +1,21 @@
+class Solution {
+    public int minCost(int[][] costs) {
+      if(costs.length == 0) return 0;
+      
+        int redLast = costs[0][0];
+      int blueLast = costs[0][1];
+      int greenLast = costs[0][2];
+        
+      for(int i = 1; i < costs.length; i++){
+          int redCur = Math.min(blueLast,greenLast) + costs[i][0];
+          int blueCur = Math.min(redLast,greenLast) + costs[i][1];
+          int greenCur = Math.min(blueLast,redLast) + costs[i][2];
+          
+          redLast = redCur;
+          blueLast = blueCur;
+          greenLast = greenCur;
+      }
+        
+        return Math.min(Math.min(redLast,blueLast), greenLast);
+    }
+}
