@@ -1,0 +1,20 @@
+class Solution {
+    public int numWays(int n, int k) {
+      if(n == 0) return 0;
+      if(k == 0) return 0;
+      if(n == 1) return k;
+      //if(n - k >= 2) return 0; not necessary, since the for loop will care this 
+        
+      int difCount = k*(k-1);
+      int sameCount = k;
+      
+     for(int i = 2; i < n ; i++){
+         int temp = difCount;
+         difCount = (difCount + sameCount) * (k - 1);
+         sameCount = temp;
+     }
+        
+      return sameCount + difCount; 
+        
+    }
+}
