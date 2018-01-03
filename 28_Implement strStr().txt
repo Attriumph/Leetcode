@@ -1,0 +1,23 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+         int index = haystack.indexOf(needle);
+        if(index!= -1)  return index;
+    return -1;
+    }
+}
+
+
+or
+
+class Solution {
+    public int strStr(String haystack, String needle) {//the implementation fo indexOf method
+      
+        for(int i = 0 ; ; i++){
+          for(int j = 0; ; j++){//for loop to judge if the needle from position j equals to the substring of haystack from position i to i+j
+              if(j == needle.length()) return i;  
+              if(i + j == haystack.length()) return -1; //
+              if(needle.charAt(j) != haystack.charAt(i + j)) break; // the char at position i does not equal to j 
+          }
+      }
+    }
+}
