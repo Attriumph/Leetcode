@@ -1,0 +1,19 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+      
+        int[] freM = new int[26];
+        int[] freR = new int[26];
+        for(int i = 0; i < magazine.length(); i++){
+            freM[magazine.charAt(i) - 'a'] ++;
+        }
+        
+       for(int i = 0; i < ransomNote.length(); i++){
+            freR[ransomNote.charAt(i) - 'a'] ++;
+        }
+        
+        for(int i = 0; i < 26; i++){
+            if(freM[i] < freR[i]) return false;
+        }
+        return true;
+    }
+}
