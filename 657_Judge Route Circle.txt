@@ -1,0 +1,19 @@
+class Solution {
+    public boolean judgeCircle(String moves) {
+       int uCount = 0 ;
+       int dCount = 0;
+       int rCount = 0;
+       int lCount = 0;
+        
+      for(char c : moves.toCharArray()){
+          if(c == 'U') uCount++;
+          if(c == 'D') dCount++;
+          if(c == 'R') rCount++;
+          if(c == 'L') lCount++;
+      }
+        
+      if(uCount == dCount && rCount == lCount) return true;
+      
+      return false;
+    }
+}
