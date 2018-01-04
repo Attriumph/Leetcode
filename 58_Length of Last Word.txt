@@ -1,0 +1,32 @@
+class Solution {
+    public int lengthOfLastWord(String s) {
+       String newS = s.trim();
+        String[] arr = newS.split(" ");
+        int res = 0;
+        
+        String lastOne = arr[arr.length - 1];
+        
+        for(int i = 0; i < lastOne.length(); i++){
+            if(Character.isLetter(lastOne.charAt(i))){
+                res++;
+            }else{
+                return 0;
+            }
+            
+        }
+        
+        return res;
+        
+    }
+}
+
+//method 2: 
+public int lengthOfLastWord(String s) {
+    String use = s.trim();
+    int count = 0;
+    for (int i = use.length() - 1; i >= 0; i--) {
+        if (use.charAt(i) != ' ') count++;
+        else break;
+    }
+    return count;
+}
