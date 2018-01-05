@@ -1,0 +1,12 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        //two ways to judge if a charater is upper case :1. Z - charactet >= 0; 2. Character.isUpperCase()
+        
+        int numCap = 0;
+        for(char c : word.toCharArray()){
+            if('Z' - c >= 0) numCap++;
+        }
+        
+        return ( numCap == 0 || numCap == word.length() || numCap == 1 && Character.isUpperCase(word.charAt(0)) );
+    }
+}
