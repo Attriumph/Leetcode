@@ -12,3 +12,4 @@ class Solution {
 
 	    }
 	}
+// Note: split（"//s+"） vs split(" +") vs split(" ")
