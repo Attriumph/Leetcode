@@ -1,7 +1,8 @@
 class Solution {
     public int compress(char[] chars) {
         //it seems that the chars must be in alphetic order
-
+        //The idea is that : if  i and i+1 are same, we just(仅仅) count;
+                          // if i is not same with i+1, or i is the last element, we update(做操作) the char(assign and discompse count)
         int pos = 0;
         int count = 0;
         for(int i = 0; i < chars.length; i++){
