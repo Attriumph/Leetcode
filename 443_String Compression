@@ -1,0 +1,25 @@
+class Solution {
+    public int compress(char[] chars) {
+        //it seems that the chars must be in alphetic order
+
+        int pos = 0;
+        int count = 0;
+        for(int i = 0; i < chars.length; i++){
+
+            count++;
+
+            if(i == chars.length - 1 || chars[i] != chars[i+1] ){
+                chars[pos++] = chars[i];
+
+                if(count != 1){
+                    char[] arr = String.valueOf(count).toCharArray();
+                    for(int j = 0; j < arr.length; j++){
+                        chars[pos++] = arr[j];
+                    }
+                }
+                count = 0;
+            }
+        }
+        return pos;
+    }
+}
