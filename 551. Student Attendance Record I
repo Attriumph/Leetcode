@@ -1,0 +1,39 @@
+class Solution {//巧妙使用了“LLL”，多余LLL的连续，一定包含LLL
+    public boolean checkRecord(String s) {
+         int count_A = 0;
+	        int count_cont_L = 0;
+
+
+        for(int i = 0 ; i < s.length(); i++){
+
+	            if(s.charAt(i) == 'A') count_A++;
+	            if(count_A > 1) return false;
+	        }
+
+	    if(s.contains("LLL")) return false;
+
+	        return true;
+    }
+}
+
+//method 2：用来找连续的变量，每次循环变量的值和前一次不一样，就重置为0.这种方式适合找最大连续次数
+class Solution {
+    public boolean checkRecord(String s) {
+       int count_A = 0, count_Ls = 0;
+       for(int i = 0; i < s.length(); i++){
+           if(s.charAt(i) == 'A'){
+               count_A++;
+               count_Ls = 0;
+           }else if( s.charAt(i) == 'L'){
+               count_Ls ++;
+           }else{
+               count_Ls = 0;
+           }
+         if(count_A > 1 || count_Ls > 2) return false;
+       }
+
+
+       return true;
+
+    }
+}
