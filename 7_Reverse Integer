@@ -1,0 +1,18 @@
+class Solution {
+   //The multiplication is performed in 32-bit precision, some reversed integer will the overflow
+ public int reverse(int x){
+
+    int result = 0;
+
+    while (x != 0)
+    {
+        int tail = x % 10;  // get the end number of the x
+        int newResult = result * 10 + tail;   // compute the progressive result
+        if ((newResult - tail) / 10 != result)  return 0; // check if reversed integer overflows
+        result = newResult;
+        x = x / 10;
+    }
+
+    return result;
+ }
+}
