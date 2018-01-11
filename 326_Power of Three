@@ -1,0 +1,9 @@
+
+ public class Solution {
+public boolean isPowerOfThree(int n) {
+
+    return ( n > 0 &&  Math.pow(3, 19) % n == 0);
+  }
+ }
+
+//如果一个数是3的 n次方，那它一定能被 3的m次方整除（m < n） ,如果不能，要么是除数不是3的n次方，或者被除数不是3的m次方
