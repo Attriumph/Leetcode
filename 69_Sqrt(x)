@@ -1,0 +1,7 @@
+class Solution {
+    public int mySqrt(int x) {
+      long res = x;// continue to lower the value of res, until r*r <= x
+      while(res * res > x) res = (res + x / res) / 2;  //Newton's method
+      return (int)res;
+    }
+}
