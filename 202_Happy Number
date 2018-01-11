@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isHappy(int n) {
+
+        if(n <= 0) return false;
+
+        Set<Integer> set = new HashSet<Integer>();
+
+        while(set.add(n)){  // if the number of n could be added into set, we will continue to check
+            int sum = 0;
+
+            while(n != 0){ // get the sum of squares of digits
+                int endNo = n % 10;
+                sum += endNo * endNo;
+                n = n / 10;
+            }
+            if(sum == 1) return true;
+            else n = sum;
+        }
+
+
+        return false;
+    }
+}
