@@ -1,0 +1,19 @@
+class Solution {
+    public int minMoves(int[] nums) {
+        int len = nums.length;
+        int moves = 0;
+        if(len == 1) return 0;
+
+        int min = Integer.MAX_VALUE;
+        for(int i = 0 ; i  < len ; i++){
+            if(nums[i] < min) min = nums[i];
+        }
+
+        for(int n : nums){
+            int temp = n - min;//temp means the times need to substract the element n to achieve the min
+            moves += temp;
+        }
+
+        return moves;
+    }
+}
