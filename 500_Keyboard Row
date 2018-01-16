@@ -1,0 +1,33 @@
+class Solution {
+    public String[] findWords(String[] words) {
+
+        String[] rows = {"QWERTYUIOP","ASDFGHJKL","ZXCVBNM"};
+        Map<Character, Integer> map = new HashMap<>();
+        List<String> res = new ArrayList<>();
+
+        // store entry in the form of letter and its row
+        for(int row = 0; row < rows.length; row++ ){
+            for(char c : rows[row].toCharArray()){
+                map.put(c,row);
+            }
+        }
+
+
+        for(int i = 0; i < words.length; i++){
+            if(words[i].equals("")) continue;//exclude "" such case contributes to indexOFBoundary
+
+            int row = map.get(words[i].toUpperCase().charAt(0));
+
+            //judge if the rest letters are all from the row of first letter
+            for(int j = 0; j < words[i].length(); j++){
+                    if(map.get(words[i].toUpperCase().charAt(j)) != row){
+                        row = -1;
+                        break;
+                    }
+                }
+            if(row != -1) res.add(words[i]);
+        }
+
+        return res.toArray(new String[0]);// use genric to translate List into array
+    }
+}
