@@ -1,0 +1,43 @@
+class Solution {
+    public char findTheDifference(String s, String t) {
+        Map<Character, Integer> map = new HashMap<>();
+        char res = '�';
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(!map.containsKey(c)){
+                map.put(c,1);
+            }else{
+                int temp = map.get(c);
+                map.put(c, temp + 1);
+            }
+        }
+
+        for(int i = 0; i < t.length(); i++){
+            char c = t.charAt(i);
+            if(!map.containsKey(c)){
+                return c;
+            }else{
+                map.put(c,map.get(c)-1);
+                if(map.get(c) == -1) res = c;
+            }
+
+        }
+
+        return res;
+
+    }
+}
+
+//method 2
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        // Initialize variables to store sum of ASCII codes for
+        // each string
+        int charCodeS = 0, charCodeT = 0;
+        // Iterate through both strings and char codes
+        for (int i = 0; i < s.length(); ++i) charCodeS += (int)s.charAt(i);
+        for (int i = 0; i < t.length(); ++i) charCodeT += (int)t.charAt(i);
+        // Return the difference between 2 strings as char
+        return (char)(charCodeT - charCodeS);
+    }
+}
