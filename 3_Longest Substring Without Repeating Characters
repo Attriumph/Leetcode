@@ -1,0 +1,22 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length() == 0) return 0;
+        Set<Character> set = new HashSet<>();
+        int res = Integer.MIN_VALUE;
+        int slow = 0, fast = 0;
+
+        //similar with silding windows, but
+        // we use set to precisely store the longest substring by coordinating two pointers, not the potential longer substring
+       while(fast < s.length()){
+            if(set.add(s.charAt(fast))) {
+                fast++;
+                res = Math.max(res, set.size());
+            }else{
+                set.remove(s.charAt(slow++));
+            }
+        }
+
+        return res;
+
+    }
+}
