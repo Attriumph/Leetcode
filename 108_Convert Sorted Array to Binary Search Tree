@@ -1,0 +1,20 @@
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums.length == 0) return null;
+
+        TreeNode res = binarySearch(nums, 0, nums.length - 1);
+        return res;
+    }
+
+    public TreeNode binarySearch(int[] nums, int low, int high){
+
+        if(low > high) return null;
+
+        int mid = (high + low)/2;
+        TreeNode resT = new TreeNode(nums[mid]);
+        resT.left = binarySearch(nums, low, mid - 1);
+        resT.right = binarySearch(nums, mid + 1, high);
+
+        return resT;
+    }
+}
