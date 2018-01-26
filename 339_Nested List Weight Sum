@@ -1,0 +1,14 @@
+class Solution {
+    public int depthSum(List<NestedInteger> nestedList) {
+         return sumHelper(nestedList,1);
+    }
+
+    public int sumHelper(List<NestedInteger> list, int depth){
+        int res = 0;
+        for(NestedInteger ele : list){
+            res = res + (ele.isInteger()? ele.getInteger() * depth:sumHelper(ele.getList(), depth+1));
+        }
+
+        return res;
+    }
+}
