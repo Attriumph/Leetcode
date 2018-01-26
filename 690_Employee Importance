@@ -1,0 +1,20 @@
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+
+        int res = 0;
+        for(Employee emp: employees){
+            if(emp.id == id) {
+                res = res + emp.importance;
+              if(emp.subordinates.size() != 0){
+                for(int sub_id: emp.subordinates){
+                   res = res + getImportance(employees, sub_id);
+               }
+              }else{
+                  return res;
+              }
+            }
+
+        }
+        return res;
+    }
+}
