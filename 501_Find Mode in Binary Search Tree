@@ -1,0 +1,40 @@
+class Solution {
+    Integer prev = null;
+    int count = 1;
+    int max = 0;
+    public int[] findMode(TreeNode root) {
+        //tranverse all node
+        //find the max value of concur,add them into arrylist according to ocur
+
+
+        if(root == null) return new int[0];
+        List<Integer> list = new ArrayList<>();
+        inOrder(root,list);
+
+        int[] res = new int[list.size()];
+        for(int i = 0; i < list.size(); i++){
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+    //为什么用inorder？ 因为此是BST，并且有euqal，这就使得我们便于统计count和max
+   public void inOrder(TreeNode root, List<Integer> list){
+       if(root == null) return;
+       inOrder(root.left,list);
+       if(prev != null){
+        if(root.val == prev) count++;// since the prev must be less than or equal to root.val
+        else count = 1;
+       }
+
+       if(count > max){
+           max = count;
+           list.clear();
+           list.add(root.val);
+       }else if(count == max){
+           list.add(root.val);
+       }
+
+       prev =root.val;
+
+       inOrder(root.right,list);
+   }
