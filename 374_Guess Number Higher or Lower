@@ -1,0 +1,20 @@
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+
+    int i = 1, j = n;
+    while(i <= j) {
+        int mid = i + (j - i) / 2;
+        int guess_res = guess(mid);
+        if(guess_res == 0) {
+            return mid;
+        }
+        if(guess(mid) == 1) {
+            i = mid + 1;
+        } else {
+            j = mid;
+        }
+    }
+    return -1;
+   }
+
+}
