@@ -1,0 +1,35 @@
+class MinStack {
+    Stack<Element> stack;
+  /** initialize your data structure here. */
+  public MinStack() {
+     stack = new Stack<Element>();
+  }
+
+  public void push(int x) {
+      int min = (stack.empty() ? x : Math.min(stack.peek().min, x));
+      stack.push(new Element(x,min));
+  }
+
+  public void pop() {
+      stack.pop();
+  }
+
+  public int top() {
+      return stack.peek().val;
+  }
+
+  public int getMin() {
+      return stack.peek().min;
+  }
+
+  class Element{
+      int val;
+      int min;
+
+      public Element(int val, int min){
+          this.val = val;
+          this.min = min;
+      }
+  }
+
+}
