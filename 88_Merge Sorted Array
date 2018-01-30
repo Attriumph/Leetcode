@@ -1,0 +1,18 @@
+public void merge (int[] num1, int m, int[] num2, int n) {
+    int pos1 = m - 1;
+    int pos2 = n - 1;
+    int i = m + n - 1;
+
+    while (pos1 >= 0 && pos2 >= 0) {
+        if (num1[pos1] >= num2[pos2]) {
+            num1[i--] = num1[pos1--];
+        } else {
+             num1[i--] = num2[pos2--];
+        }
+    }
+
+    while (pos2 >= 0) {
+        num1[i--] = num2[pos2--];
+    }
+
+  }
