@@ -1,0 +1,12 @@
+class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        if (root == null) return 0;
+        return numPath(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+
+    }
+
+    private int numPath(TreeNode root, int sum) {
+        if (root == null) return 0;
+        return (root.val == sum ? 1 : 0) + numPath(root.left, sum - root.val) + numPath(root.right, sum - root.val);
+    }
+}
