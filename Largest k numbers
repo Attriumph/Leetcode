@@ -15,11 +15,14 @@ class Solution {
                 minheap.offer(nums[i]);
             }
         }
+        // iterate the minheap
         Iterator it = minheap.iterator();
         List<Integer> result = new ArrayList<Integer>();
         while(it.hasNext()) {
             result.add((Integer) it.next());
-        }
+        }]
+        //since the iteration of priopority is unsorted, we need to sort them
+        // reversesOrder() return a comparator 
         Collections.sort(result, Collections.reverseOrder());
 
         int[] res = new int[result.size()];
