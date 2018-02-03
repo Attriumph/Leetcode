@@ -1,0 +1,21 @@
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+
+        Set<Integer> set = new HashSet<Integer>();
+
+        return containsTarget(root, set, k);
+
+    }
+
+    private boolean containsTarget(TreeNode root, Set<Integer> set, int k) {
+        if (root == null) return false;
+
+        if (set.contains(k - root.val)) {
+            return true;
+        }
+
+        set.add(root.val);
+        return containsTarget(root.left, set, k) || containsTarget(root.right,set,k);
+    }
+
+}
