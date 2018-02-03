@@ -1,0 +1,38 @@
+public class Solution {
+
+    // 思路: 主要是使用一个栈来保存数组元素的下标，注意是保存‘下标’。
+    // 入栈和出栈的规则如下:
+    //    (1) 当栈为空，或者以栈顶元素tp为下标查到的heights[tp] <= heights[i]时(i为当前遍历的索引)，入栈
+    //    (2) 当栈顶元素tp对应的heights[tp] > heights[i]时，出栈，同时计算以heights[tp]为高，能得到的最大矩形面积
+    //    (3) 当遍历完整个heights数组后，若栈不为空，则依次弹栈，同时以栈顶元素tp对应的heights[tp]为高，计算能得到的最大矩形面积
+
+    public int largestRectangleArea(int[] heights) {
+       if (heights  == null || heights.length == 0) {
+           return 0;
+       }
+
+        int max = 0;
+        int i = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (; i < heights.length; i++) {
+            if (stack.isEmpty() || heights[stack.peek()] <= heights[i]) {
+                stack.push(i);
+            } else {
+                int top = stack.pop();
+                int startIndex = stack.isEmpty()? -1 : stack.peek();
+                max = Math.max(max, heights[top] * (i - 1 - startIndex));
+                i--;
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            int top = stack.pop();
+            int startIndex = stack.isEmpty()? -1 : stack.peek();
+            max = Math.max(max, heights[top] * (i - 1 - startIndex));
+        }
+
+        return max;
+    }
+
+}
