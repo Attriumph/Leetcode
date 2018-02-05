@@ -1,0 +1,21 @@
+class Solution {
+     public int[] nextGreaterElements(int[] nums) {
+       int length = nums.length;
+       int[] res = new int[length];
+       Arrays.fill(res, -1);
+       Deque<Integer> stack = new ArrayDeque<>();
+
+         for (int i = 0; i < 2 * length; i++) {
+             int num = nums[i % length];
+
+             while (!stack.isEmpty() && nums[stack.peek()] < num ) {
+                 res[stack.pop()] = num;
+             }
+
+            stack.push(i % length);
+
+         }
+
+         return res;
+    }
+}
