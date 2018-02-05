@@ -1,0 +1,35 @@
+class Solution {
+    public int nextGreaterElement(int n) {
+        char[] num = String.valueOf(n).toCharArray();
+        int length = num.length;
+        int i = length - 1;
+
+        for (; i > 0; i--) {
+            if (num[i - 1] < num[i]) {
+                break;
+            }
+        }
+
+        if (i == 0) {
+            return -1;
+        }
+
+        int smallest = i;
+        int j = i;
+        for (; j <= length - 1; j++) {
+            if (num[smallest] > num[j] && num[j] > num[i - 1]) {
+                smallest = j;
+            }
+        }
+
+        //swap num[i-1] and num[j]
+        char temp = num[i - 1];
+        num[i - 1] = num[smallest];
+        num[smallest] = temp;
+
+        // sort the arry from i to j
+        Arrays.sort(num, i, length);
+        long res = Long.valueOf(new String(num));
+        return res <= Integer.MAX_VALUE ? (int)res : -1;
+    }
+}
