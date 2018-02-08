@@ -1,0 +1,17 @@
+class Solution {
+    public String longestWord(String[] words) {
+        //1 set used to record the other words could be bulit words
+        Arrays.sort(words);
+        String res = "";
+        Set<String> set = new HashSet<>();
+
+        for (String word : words) {
+            if (word.length() == 1 || set.contains(word.substring(0, word.length() - 1))) {
+                res = res.length() < word.length() ? word : res;
+                set.add(word);
+            }
+        }
+
+        return res;
+    }
+}
