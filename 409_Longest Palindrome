@@ -1,0 +1,28 @@
+class Solution {
+    public int longestPalindrome(String s) {
+
+        Map<Character, Integer> map = new HashMap<>();
+        int result = 0;
+
+        for(int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+
+        Iterator<Integer> iter = map.values().iterator();
+        int odd = 0;
+        int oddtimes = 0;
+        int even = 0;
+        while (iter.hasNext()) {
+            int cur = iter.next();
+            if (cur % 2 == 0) {
+                even += cur;
+            } else {
+                oddtimes = 1;
+                odd += cur - 1;
+            }
+        }
+
+        return result = (oddtimes == 0 ? even : even + odd + 1);
+    }
+}
