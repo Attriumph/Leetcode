@@ -1,0 +1,27 @@
+Is palindormic number
+此题交给了我们三个知识点
+1.如何求一个整数的位数(int)(Math.floor(Math.log10(x))) + 1;
+2.利用 %可以的到去除most sigificant digit的数和得到most signficant didiit
+3.利用 / 类得到去除least signficant digit的数和得到least signficant digit
+public class Solution {
+    public static boolean solution (int x) {
+        // your code here
+        if (x < 0) {
+            return false;
+        }
+
+        final int digitNum = (int)(Math.floor(Math.log10(x))) + 1;
+        int mask = (int)Math.pow(10, digitNum - 1);
+
+        for (int i = 0; i < (digitNum / 2); i++) {
+            if (x / mask != x % 10) {
+                return false;
+            }
+
+            x %= mask;
+            x /= 10;
+            mask /= 100;
+        }
+        return true;
+    }
+}
