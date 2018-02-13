@@ -1,0 +1,36 @@
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        if (intervals.size() <= 1) {
+            return intervals;
+        }
+
+        // sort in starting time
+        Collections.sort(intervals, new IntervalCom());
+
+        // compare the end of the prev with the next
+        // merge
+        for (int i = 1; i < intervals.size(); i++) {
+            Interval prev = intervals.get(i - 1);
+            Interval cur = intervals.get(i);
+            if (cur.start <= prev.end) {
+               intervals.set(i - 1, merge(prev,cur));
+                intervals.remove(i--);
+
+            }
+        }
+
+        return intervals;
+    }
+    private Interval merge(Interval int1, Interval int2) {
+         if (int2.end > int1.end) {
+        return new Interval(int1.start, int2.end);
+         }
+        return new Interval(int1.start, int1.end);
+    }
+
+    class IntervalCom implements Comparator<Interval> {
+        public int compare(Interval int1, Interval int2) {
+            return int1.start - int2.start;
+        }
+    }
+}
