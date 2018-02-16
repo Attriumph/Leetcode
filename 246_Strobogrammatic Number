@@ -1,0 +1,53 @@
+class Solution {
+    public boolean isStrobogrammatic(String num) {
+
+    if (num == null) {
+     throw new IllegalArgumentException("Wrong Argument!");
+    }
+    if(num.length() == 1 && !num.equals("0") && !num.equals("1") && !num.equals("8")) {
+        return false;
+    }
+
+    int beg = 0;
+    int end = num.length() - 1;
+
+    while (beg < end) {
+      if( isMatch(num.charAt(beg), num.charAt(end))){
+        beg++;
+        end--;
+      } else {
+         return false;
+      }
+
+  }
+    if (end == beg ) {// for odd length
+        if (num.charAt(end) == '0' || num.charAt(end) == '1' || num.charAt(end) == '8') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return true;
+
+
+  }
+  private boolean isMatch(char chr1, char chr2) {
+    if (chr1 == '0' && chr2 == '0') {
+      return true;
+    }
+    if (chr1 == '6' && chr2 == '9' ) {
+       return true;
+    }
+    if (chr1 == '9' && chr2 == '6') {
+       return true;
+    }
+    if (chr1 == '8' && chr2 == '8') {
+       return true;
+    }
+    if (chr1 == '1' && chr2 == '1') {
+        return true;
+    }
+    return false;
+    }
+  }
+  
