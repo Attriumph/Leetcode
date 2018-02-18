@@ -1,0 +1,50 @@
+class Solution {
+    public String simplifyPath(String path) {
+        if (path == null) {
+            return null;
+        }
+        if (path.length() == 0) {
+            return path;
+        }
+        Deque<String> stack = new ArrayDeque<>();
+        Deque<String> stack2 = new ArrayDeque<>();
+        String res = "/";
+
+        //1.choose effective char
+        int i = 0;
+        while (i < path.length()) {
+            int j = i + 1;
+            String content = "";
+            while (j < path.length() && path.charAt(j) != '/' ){
+                content += path.charAt(j);
+                j++;
+            }
+
+            if (content.equals("..")) {
+                if (!stack.isEmpty()) {
+                   stack.pop();
+                }
+
+            } else if (content.equals("")) {
+
+            }else if (content.equals(".")) {
+
+            }else {
+                stack.push(content);
+            }
+
+            i = j;
+        }
+        //2.compose a valid path
+        while (!stack.isEmpty()) {
+            stack2.push(stack.pop());
+        }
+        while (!stack2.isEmpty()){
+            res += stack2.pop() + "/";
+        }
+        if (res == "/") {
+            return res;
+        }
+        return res.substring(0, res.length() - 1);
+    }
+}
