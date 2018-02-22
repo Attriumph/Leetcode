@@ -1,0 +1,25 @@
+class Solution {
+    TreeNode prev = null;
+    public boolean isValidBST(TreeNode root) {
+        return in_orderSearch(root);
+    }
+
+    private boolean in_orderSearch(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        if (in_orderSearch(root.left) == false) {
+            return false;
+        }
+        if (prev != null && prev.val >= root.val){
+            return false;
+        }
+        prev = root;
+        if (in_orderSearch(root.right) == false) {
+            return false;
+        }
+
+        return true;
+    }
+}
