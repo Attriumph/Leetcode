@@ -18,7 +18,7 @@ This is the method:
 The first is to use pre-order and the second is to use invert the order
 
 The code is ：
-
+```java
       public List<Integer> postOrder (TreeNode root) {
 
         //never forget to deal with corner case
@@ -47,7 +47,7 @@ The code is ：
          // build arraylist using deque
          return new ArrayList<Integer>(stack2);
       }
-
+```
 
 ## 2.summary:
     * pre-order is the simplest thought
