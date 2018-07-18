@@ -38,3 +38,55 @@ public class Solution {
   }
 }
 ```
+
+##  Lowest Common Ancestor III 题目
+node A 和 node B不一定在此颗树里，当没有的时候，返回null
+```java
+class ResultType {
+  public boolean a_exist;
+  public boolean b_exist;
+  public TreeNode lca;
+  ResultType(boolean a, boolean b, TreeNode lca) {
+    a_exist = a;
+    b_exist = b;
+    lca = this.lca;
+  }
+}
+public class Soultion {
+
+  public TreeNode lca3 (TreeNode root, TreeNode A, TreeNode B) {
+    ResultType rt = helper(root, A, B);
+    if (rt.a_exist && rt.b.exist) {
+      return rt.lca;
+    }
+    return null;
+  }
+
+  public ResultType helper (TreeNode root, TreeNode A, TreeNode B) {
+    if (root == null) {
+      return new ResultType(root, false, false);
+    }
+
+    ResultType left = helper(root.left, A, B);
+    ResultType right = helper(root.right, A, B);
+
+    boolean a_exist = left.a_exist || right.a_exist || root == A;
+    boolean b_exist = left.b_exist || right.b_exist || root == B;
+
+    if (root == A || root == B) {
+      return new ResultType(a_exist, b_exist, root);
+    }
+    if (left.lca !== null && right.lca != null) {
+      return new ResultType(a_exist, b_exist, root);
+    }
+    if (left.lca !== null) {
+      return new ResultType(a_exist, b_exist, left.lca);
+    }
+    if (right.lca != null) {
+      return new ResultType(a_exist, b_exist, right.lca);
+    }
+
+    return new ResultType(a_exist, b_exist, null);
+  }
+}
+```
