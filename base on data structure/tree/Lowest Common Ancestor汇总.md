@@ -41,12 +41,18 @@ public class Solution {
 
 ##  Lowest Common Ancestor III 题目
 node A 和 node B不一定在此颗树里，当没有的时候，返回null
+
+### 解题思路：
+**分治是解决二叉树问题的万精油**
+由lca1我们有了一种分治算法---看左右子树返回值，来确定lca
+但是，当时的前提条件是，我们一定能返回一份非空node（lca或者发现了某个点）
+此时，因为两个点可能不在此树里，所以，为了确定lca，我们需要更多的返回值——点A和点B是否存在。所以定义ResultType
 ```java
 class ResultType {
   public boolean a_exist;
   public boolean b_exist;
   public TreeNode lca;
-  ResultType(boolean a, boolean b, TreeNode lca) {
+  ResultType(TreeNode lca, boolean a, boolean b) {
     a_exist = a;
     b_exist = b;
     lca = this.lca;
@@ -54,17 +60,17 @@ class ResultType {
 }
 public class Soultion {
 
-  public TreeNode lca3 (TreeNode root, TreeNode A, TreeNode B) {
-    ResultType rt = helper(root, A, B);
+  public TreeNode lca3 (TreeNode A, TreeNode B,TreeNode root) {
+    ResultType rt = helper( A, B, root);
     if (rt.a_exist && rt.b.exist) {
       return rt.lca;
     }
     return null;
   }
 
-  public ResultType helper (TreeNode root, TreeNode A, TreeNode B) {
+  public ResultType helper (TreeNode A, TreeNode B，TreeNode root) {
     if (root == null) {
-      return new ResultType(root, false, false);
+      return new ResultType(false, false, root);
     }
 
     ResultType left = helper(root.left, A, B);
