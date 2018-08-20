@@ -47,7 +47,7 @@
 
       private void traverse(TreeNode root, List<Integer> res) {
         if (root == null) {
-          return res;
+          return;
         }
 
         res.add(root.val);
@@ -59,7 +59,7 @@
 
 
 2）分治法
- 
+
   public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
       List<Integer> res = new ArrayList<>();
