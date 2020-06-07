@@ -1,19 +1,44 @@
 ## inorder traversal
-1.可以用iteration的方法：
+
+1.可以用 iteration 的方法：
 
 ```java
     public class Solution {
-      public List<Integer> inorderTraversal (TreeNode root) {
+       public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
 
-      }
+        if (root == null) {
+            return res;
+        }
+
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.addFirst(cur);
+                cur = cur.left;
+            }
+
+            cur = stack.removeFirst();
+            res.add(cur.val);
+            cur = cur.right;
+        }
+
+        return res;
+
+    }
      }
 ```
+
 2.也可以使用递归方法
-  递归三要素：
-  * 函数名
-  * 出口（停止条件）
-  * 当前层操作
-1）遍历法
+递归三要素：
+
+- 函数名
+- 出口（停止条件）
+- 当前层操作
+  1）遍历法
+
 ````java
     public class Solution {
       public List<Integer> inorderTraversal(TreeNode root) {
@@ -57,3 +82,4 @@
       return res;
     }
   }
+````
