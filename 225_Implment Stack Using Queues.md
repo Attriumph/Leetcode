@@ -1,3 +1,4 @@
+```java
 class MyStack {
     private Queue<Integer> queue1;
     private Queue<Integer> queue2;
@@ -61,3 +62,4 @@ class MyStack {
  * int param_3 = obj.top();
  * boolean param_4 = obj.empty();
  */
+ ```
